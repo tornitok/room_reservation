@@ -2,10 +2,12 @@
 
 # Импортируем из Алхимии нужные классы.
 from sqlalchemy import Column, String, Text
+from sqlalchemy.orm import relationship
 
 # Импортируем базовый класс для моделей.
 from app.core.db import Base
 from app.schemas.meeting_room import MeetingRoomCreate
+from app.models.reservation import Reservation
 
 
 class MeetingRoom(Base):
@@ -19,3 +21,5 @@ class MeetingRoom(Base):
         name='Главная переговорка',
         description='Очень большая, модная и помпезная комната.'
     )
+    # Установите связь между моделями через функцию relationship.
+    reservations = relationship(Reservation, cascade='delete')

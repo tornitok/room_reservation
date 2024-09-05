@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
 
 
 # Базовый класс схемы, от которого наследуем все остальные.
@@ -15,6 +15,14 @@ class MeetingRoomCreate(MeetingRoomBase):
     name: str = Field(..., min_length=1, max_length=100)
     # Описывать поле description не нужно: оно уже есть в базовом классе.
 
+# Новый класс для обновления объектов.
+class MeetingRoomUpdate(MeetingRoomBase):
+
+    @validator('name')
+    def name_cannot_be_null(cls, value):
+        if value is None:
+            raise ValueError('Имя переговорки не может быть пустым!')
+        return value
 
 # Возвращаемую схему унаследуем от MeetingRoomCreate,
 # чтобы снова не описывать обязательное поле name.

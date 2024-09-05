@@ -105,7 +105,7 @@
 #     response_data = message.to_outgoing()
 #     return response_data
 
-from fastapi import FastAPI, Depends
+from fastapi import Depends, FastAPI
 
 app = FastAPI()
 

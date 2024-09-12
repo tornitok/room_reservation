@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     app_title: str = 'Бронирование переговорок'
     database_url: str
     description: str = ''
+    secret: str = 'SECRET'
 
     class Config:
         env_file = '.env'

@@ -6,8 +6,8 @@ from sqlalchemy.orm import relationship
 
 # Импортируем базовый класс для моделей.
 from app.core.db import Base
-from app.schemas.meeting_room import MeetingRoomCreate
 from app.models.reservation import Reservation
+from app.schemas.meeting_room import MeetingRoomCreate
 
 
 class MeetingRoom(Base):

@@ -1,7 +1,8 @@
+from typing import Optional
+
 from datetime import datetime, timedelta
 
-from pydantic import BaseModel, root_validator, validator, Extra, Field
-
+from pydantic import BaseModel, Extra, Field, root_validator, validator
 
 FROM_TIME = (datetime.now() + timedelta(minutes=10)).isoformat(timespec='minutes')
 TO_TIME = (datetime.now() + timedelta(hours=1)).isoformat(timespec='minutes')
@@ -45,6 +46,8 @@ class ReservationCreate(ReservationBase):
 class ReservationDB(ReservationBase):
     id: int
     meetingroom_id: int
+    # Добавьте опциональное поле user_id.
+    user_id: Optional[int]
 
     class Config:
         orm_mode = True
